@@ -1,0 +1,213 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    max-width: 800px;
+    width: 100%;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.score {
+    font-size: 1.3em;
+    color: #555;
+    display: flex;
+    gap: 30px;
+}
+
+.score span {
+    font-weight: bold;
+}
+
+#moves, #matches {
+    color: #667eea;
+    font-size: 1.2em;
+}
+
+.reset-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.reset-btn:hover {
+    background: #5568d3;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.reset-btn:active {
+    transform: translateY(0);
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.card {
+    aspect-ratio: 1;
+    background: #667eea;
+    border-radius: 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    font-weight: bold;
+    color: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '?';
+    position: absolute;
+    font-size: 3em;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.card.flipped {
+    background: white;
+    color: #333;
+    transform: rotateY(180deg);
+}
+
+.card.flipped::before {
+    display: none;
+}
+
+.card.matched {
+    background: #4ade80;
+    cursor: default;
+    animation: matchPulse 0.5s ease;
+}
+
+.card.matched::before {
+    display: none;
+}
+
+.card:not(.flipped):not(.matched):hover {
+    background: #5568d3;
+    transform: scale(1.05);
+}
+
+.card:not(.flipped):not(.matched):active {
+    transform: scale(0.95);
+}
+
+@keyframes matchPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.message {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #667eea;
+    min-height: 40px;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.message.success {
+    color: #4ade80;
+    font-size: 1.8em;
+    animation: celebrate 0.5s ease;
+}
+
+@keyframes celebrate {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2em;
+    }
+    
+    .game-info {
+        flex-direction: column;
+    }
+    
+    .score {
+        font-size: 1.1em;
+        gap: 20px;
+    }
+    
+    .reset-btn {
+        width: 100%;
+        padding: 12px 25px;
+        font-size: 1.1em;
+    }
+    
+    .game-board {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+    
+    .card {
+        font-size: 2.5em;
+    }
+    
+    .card::before {
+        font-size: 2.5em;
+    }
+}
+
